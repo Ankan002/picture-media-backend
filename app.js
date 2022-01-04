@@ -6,6 +6,8 @@ const fileUpload = require('express-fileupload')
 const authTypeDefs = require('./graphql/TypeDefs/authTypeDefs.js')
 const authResolvers = require('./graphql/Resolvers/authResolvers')
 const postRoute = require('./routes/post')
+const postTypeDefs = require('./graphql/TypeDefs/postTypeDefs')
+const postResolvers = require('./graphql/Resolvers/postResolvers')
 const cors = require('cors')
 
 const startServer = async () => {
@@ -21,8 +23,8 @@ const startServer = async () => {
     }))
 
     const apolloServer = new ApolloServer({
-        typeDefs: [authTypeDefs],
-        resolvers: [authResolvers]
+        typeDefs: [authTypeDefs, postTypeDefs],
+        resolvers: [authResolvers, postResolvers]
     })
 
     await apolloServer.start()
