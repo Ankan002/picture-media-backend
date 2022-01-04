@@ -5,7 +5,7 @@ exports.getAllPosts = async() => {
     try{
         const posts = await Post.find().populate('user').exec()
         return{
-            posts: posts,
+            posts: posts.reverse(),
             success: true
         }
     }
@@ -24,7 +24,7 @@ exports.getPostsByUserId = async(parent, args, context, info) => {
         const posts = await Post.find({user: userId})
 
         return {
-            posts: posts,
+            posts: posts.reverse(),
             success: true
         }
     }
