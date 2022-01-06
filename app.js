@@ -8,6 +8,8 @@ const authResolvers = require('./graphql/Resolvers/authResolvers')
 const postRoute = require('./routes/post')
 const postTypeDefs = require('./graphql/TypeDefs/postTypeDefs')
 const postResolvers = require('./graphql/Resolvers/postResolvers')
+const userResolvers = require('./graphql/Resolvers/userResolvers')
+const userTypeDefs = require('./graphql/TypeDefs/userTypeDefs')
 const cors = require('cors')
 
 const startServer = async () => {
@@ -23,8 +25,8 @@ const startServer = async () => {
     }))
 
     const apolloServer = new ApolloServer({
-        typeDefs: [authTypeDefs, postTypeDefs],
-        resolvers: [authResolvers, postResolvers]
+        typeDefs: [authTypeDefs, postTypeDefs, userTypeDefs],
+        resolvers: [authResolvers, postResolvers, userResolvers]
     })
 
     await apolloServer.start()
