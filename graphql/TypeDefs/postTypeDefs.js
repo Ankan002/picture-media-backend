@@ -56,8 +56,21 @@ const postTypeDefs = gql`
         link: String!
     }
 
+    input LikeInput{
+        postId: ID!
+        userId: ID!
+        user: ID!
+    }
+
+    type LikeResponse{
+        message: String
+        post: userPost
+        success: Boolean!
+    }
+
     type Mutation{
         deletePost(post: PostInput!): DeletedPost
+        likePost(payload: LikeInput!): LikeResponse
     }
 `
 

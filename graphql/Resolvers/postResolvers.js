@@ -1,4 +1,4 @@
-const { getAllPosts, getPostsByUserId, deletePostById } = require('../Helpers/posts')
+const { getAllPosts, getPostsByUserId, deletePostById, likeOrDislikePost } = require('../Helpers/posts')
 
 const postResolvers = {
     Query: {
@@ -6,7 +6,8 @@ const postResolvers = {
         userPosts: getPostsByUserId,
     },
     Mutation: {
-        deletePost: deletePostById
+        deletePost: deletePostById,
+        likePost: likeOrDislikePost
     }
 }
 
