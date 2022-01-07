@@ -44,6 +44,21 @@ const postTypeDefs = gql`
         Posts: Posts
         userPosts(userId: ID!): userPosts
     }
+
+    type DeletedPost{
+        message: String,
+        postId: ID,
+        success: Boolean!
+    }
+
+    input PostInput{
+        postId: ID!
+        link: String!
+    }
+
+    type Mutation{
+        deletePost(post: PostInput!): DeletedPost
+    }
 `
 
 module.exports = postTypeDefs

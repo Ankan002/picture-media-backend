@@ -1,9 +1,12 @@
-const { getAllPosts, getPostsByUserId } = require('../Helpers/posts')
+const { getAllPosts, getPostsByUserId, deletePostById } = require('../Helpers/posts')
 
 const postResolvers = {
     Query: {
         Posts: getAllPosts,
-        userPosts: getPostsByUserId
+        userPosts: getPostsByUserId,
+    },
+    Mutation: {
+        deletePost: deletePostById
     }
 }
 
