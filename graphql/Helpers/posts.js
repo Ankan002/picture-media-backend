@@ -74,7 +74,7 @@ exports.likeOrDislikePost = async(parent, args, context, info)  => {
         const currentUser = await User.findById(user)
 
         if((post?.liked_users).includes(userId)){
-            const newLikedUsers = (post?.liked_users).filter((user) => {user !== userId})
+            const newLikedUsers = (post?.liked_users).filter((user_id) => user_id.toString() !== userId)
             post.liked_users = newLikedUsers
             post.likes = post?.likes - 1
             currentUser.likes =  currentUser?.likes - 1
@@ -91,7 +91,6 @@ exports.likeOrDislikePost = async(parent, args, context, info)  => {
         currentUser.likes =  currentUser?.likes + 1
         const updatedPost = await Post.findByIdAndUpdate(postId, {$set: post}, {new: true})
         await User.findByIdAndUpdate(user, {$set: currentUser}, {new: true})
-        console.log(updatedPost)
         return{
             post: updatedPost,
             success: true
